@@ -1,8 +1,8 @@
-<p align="center">
-  <h1>Api Docs for VuePress</h1>
+<div align="center">
+  <h1>API Docs for VuePress</h1>
   <p>Language-agnostic API docs generator for VuePress.</p>
   <p><a href="https://eryn.io/Cmdr/api/Registry.html">Demo</a> | <a href="https://raw.githubusercontent.com/evaera/Cmdr/master/docs/api/Registry.md">Source</a></p>
-</p>
+</div>
 
 ## Why?
 

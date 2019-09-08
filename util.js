@@ -16,7 +16,7 @@ export function getUrl (path) {
     return API_DOCS.types[type]
   }
 
-  let base = this.$site.base || ''
+  let base = '' // this.$site.base || ''
 
   if (base.endsWith('/')) {
     base = base.slice(0, -1)

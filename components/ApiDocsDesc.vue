@@ -22,3 +22,12 @@ export default {
   props: ['text']
 }
 </script>
+
+<style lang="stylus" scoped>
+.inset
+  border-left 4px solid lighten($accentColor, 50%)
+  padding-left 10px
+
+  p
+    margin 5px
+</style>

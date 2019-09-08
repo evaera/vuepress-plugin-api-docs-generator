@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>API Docs for VuePress</h1>
+  <h1>API Docs Generator for VuePress</h1>
   <p>Language-agnostic API docs generator for VuePress.</p>
   <p><a href="https://eryn.io/Cmdr/api/Registry.html">Demo</a> | <a href="https://raw.githubusercontent.com/evaera/Cmdr/master/docs/api/Registry.md">Source</a></p>
 </div>
@@ -29,14 +29,14 @@ It's very simple to use and works with very minimal configuration in your projec
 
 ## Usage
 
-1. Install plugin through npm
+1. Install plugin through npm: `npm i -D vuepress-plugin-api-docs-generator`
 2. Add to your `config.js` inside your `.vuepress` folder:
 
 ```js
 module.exports = {
   ...
   plugins: [
-    ['api-docs', { /* options */ }]
+    ['api-docs-generator', { /* options */ }]
   ],
   ...
 }
@@ -61,6 +61,7 @@ End a free-form type with a `?` to indicate optionality, this is detected for pa
 
 Objects which can become other kinds of types. This object has the keys:
 
+- `desc`: String, only displayed when within an Interface object.
 - `kind`: String, with the possible values:
   - `function`
     - self becomes Function
@@ -104,12 +105,14 @@ Object with possible keys:
 
 ### Parameter
 
-Objects with the possible keys:
+Object with the possible keys:
 
 - `name`: The name of the parameter
 - `type`: FreeFormType
 - `optional`: Boolean. This is implied true if `type` is a string and ends with a `?`
 - `desc`: Description
+
+Shorthand: Instead of an object, set to a string in the format `"firstName: firstType, secondName: secondType"`
 
 ### ReturnValue
 

@@ -155,15 +155,15 @@ export default {
 
   render (h) {
     return (
-      <this.tag {...this.attributes}>{
-        (this.prefix || '') + (isInterface(this.item) && '{' || '' )
-        }{
-          stringifiers[this.item.kind] != null ?
-          stringifiers[this.item.kind](h, this.item, this) :
-          `TYPE ${this.item.kind} IS INVALID`
-        }{
-          this.postfix || (isInterface(this.item) && '}') || ''
+      <span>
+        <code>{ this.prefix }</code>
+        <this.tag {...this.attributes}>{
+            stringifiers[this.item.kind] != null ?
+            stringifiers[this.item.kind](h, this.item, this) :
+            `TYPE ${this.item.kind} IS INVALID`
         }</this.tag>
+        <code>{ this.postfix }</code>
+      </span>
     )
   }
 }

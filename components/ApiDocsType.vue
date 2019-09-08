@@ -4,6 +4,7 @@ import ApiDocsTypeText from './ApiDocsTypeText'
 import ApiKindProperty from './kinds/ApiKindProperty'
 import ApiKindType from './kinds/ApiKindType'
 import apiMixin from '../apiMixin'
+import { isInterface } from '../util'
 
 const KINDS = {
   function: ApiKindMethod,
@@ -96,6 +97,20 @@ export default {
   },
 
   methods: {
+    getPrefix () {
+      if (this.effectiveKind === 'text' && isInterface(this.item)) {
+        return (this.prefix || '') + '{' 
+      }
+
+      return this.prefix
+    },
+    getPostfix () {
+      if (this.effectiveKind === 'text' && isInterface(this.item)) {
+        return '}' + (this.postfix || '')
+      }
+
+      return this.postfix
+    },
     getReturns (returns) {
       if (returns == null) {
         returns = this.getDefaults('returns', [])
@@ -122,8 +137,8 @@ export default {
     return h(KINDS[this.effectiveKind], {
       props: {
         item: this.item,
-        prefix: this.prefix,
-        postfix: this.postfix,
+        prefix: this.getPrefix(),
+        postfix: this.getPostfix(),
         source: this.source,
         nested: this.nested,
         ...{

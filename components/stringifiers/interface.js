@@ -11,7 +11,7 @@ export default function (h, item) {
       marginLeft: '30px'
     }}>{
         Object.entries(item.type).map(([key, value]) => (
-          <div>{key}:{ isInterface(value) && ' {'} {
+          <div>{key}: {
             <ApiDocsType
               type={item.kind === 'literal' && typeof value === 'object' ? {
                 kind: 'literal',
@@ -24,18 +24,19 @@ export default function (h, item) {
               nested
             />}{value.desc &&
               <ApiDocsDesc
+                class='inset'
                 style={{
                   marginLeft: '30px',
-                  marginTop: '-10px',
-                  marginBottom: '-10px',
+                  // marginTop: '-10px',
+                  // marginBottom: '-10px',
                   // color: '#777',
                   fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI'
                 }}
                 text={value.desc.trim()}
               />
-          }{ isInterface(value) && '}'}
+          }
           </div>
         )).reduce(join('\n'), null)}
-      }</div>
+    </div>
   )
 }

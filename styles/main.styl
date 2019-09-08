@@ -1,0 +1,45 @@
+.api-page
+  main > div
+    max-width 1000px !important
+
+  th, td
+    border: none;
+    text-align: left;
+
+  tr
+    border-top: none;
+    border-bottom: 1px solid $borderColor
+
+  h1 > code, h2 > code, h3 > code, h4 > code, h5 > code, code.transparent-bg {
+    background-color: transparent !important;
+    color: $textColor !important;
+    padding: 0 !important;
+    font-size: inherit !important;
+  }
+
+  dd, dt
+    display: inline-block;
+
+  dl
+    margin-top: 0.5rem;
+
+  summary
+    cursor pointer
+    white-space nowrap
+    color $accentColor
+
+    &:focus
+      outline none
+
+  div[class^="language-"] {
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .api-item
+    border-bottom 1px solid $borderColor
+    padding-bottom 20px
+    margin-bottom 25px
+
+    &:last-of-type
+      border-bottom none

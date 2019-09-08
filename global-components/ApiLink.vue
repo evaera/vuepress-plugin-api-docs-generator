@@ -1,6 +1,6 @@
 <template>
-  <ApiDocsLink v-if="path" :to="path" ><slot /></ApiDocsLink>
-  <span v-else style="color: red; font-weight: bold"><slot /> [broken link]</span>
+  <ApiDocsLink v-if="path" :to="path" ><slot>{{ to }}</slot></ApiDocsLink>
+  <span v-else style="color: red; font-weight: bold"><slot>{{ to }}</slot> [broken link]</span>
 </template>
 
 <script>

@@ -1,5 +1,6 @@
 import { joinElements as join, isInterface } from '../../util'
 import ApiDocsType from '../ApiDocsType.vue'
+import ApiDocsDesc from '../ApiDocsDesc.vue'
 
 export default function (h, item) {
   return (
@@ -21,14 +22,20 @@ export default function (h, item) {
                 tag: isInterface(value) ? 'pre' : 'span'
               }}
               nested
-            />}{value.desc && <div style={{
-            marginLeft: '30px',
-            marginTop: '-10px',
-            marginBottom: '-10px',
-            // color: '#777',
-            fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI'
-          }} domPropsInnerHTML={value.desc.trim()} />}{ isInterface(value) && '}'}</div>
-        )).reduce(join('\n'), null)
+            />}{value.desc &&
+              <ApiDocsDesc
+                style={{
+                  marginLeft: '30px',
+                  marginTop: '-10px',
+                  marginBottom: '-10px',
+                  // color: '#777',
+                  fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI'
+                }}
+                text={value.desc.trim()}
+              />
+          }{ isInterface(value) && '}'}
+          </div>
+        )).reduce(join('\n'), null)}
       }</div>
   )
 }

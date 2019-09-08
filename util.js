@@ -16,6 +16,12 @@ export function getUrl (path) {
     return API_DOCS.types[type]
   }
 
+  let base = this.$site.base || ''
+
+  if (base.endsWith('/')) {
+    base = base.slice(0, -1)
+  }
+
   for (const page of this.$site.pages) {
     if (page.frontmatter.docs) {
       if (page.frontmatter.docs.name === type) {
@@ -24,13 +30,13 @@ export function getUrl (path) {
             if (page.frontmatter.docs[key]) {
               for (const t of page.frontmatter.docs[key]) {
                 if (t.name === member) {
-                  return page.regularPath + '#' + slugify(member)
+                  return base + page.regularPath + '#' + slugify(member)
                 }
               }
             }
           }
         } else {
-          return page.regularPath
+          return base + page.regularPath
         }
       }
     }

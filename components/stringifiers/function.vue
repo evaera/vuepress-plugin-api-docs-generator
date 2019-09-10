@@ -16,8 +16,9 @@ export default {
         whiteSpace: 'nowrap'
       }}>{
           this.item.params.map(p => (
-            <span>{p.name}: <ApiDocsType nested type={p.type} kindProps={{
+            <span>{p.name + (p.optional || (typeof p.type === 'string' && p.type.endsWith('?')) ? '?' : '')}: <ApiDocsType nested type={p.type} kindProps={{
               tag: 'span',
+              retainTypeModifiers: false,
               attrs: item => ({
                 class: typeof item.type === 'string' && 'api-docs-accent-type'
               })

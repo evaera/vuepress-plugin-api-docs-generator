@@ -61,6 +61,7 @@ export default {
       }
 
       if (type.kind === 'function') {
+        type.returns = this.getReturns(type.returns)
         type.params = type.params || []
         type.tags = type.tags || []
 

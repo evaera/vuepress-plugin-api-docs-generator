@@ -65,7 +65,7 @@ module.exports = (options = {}, context) => {
     additionalPages () {
       if (options.api) {
         return options.api.map(member => ({
-          path: `/api/${slugifyText(member.name)}.html`,
+          path: `/api/${member.urlPath || slugifyText(member.name)}.html`,
           content: `---\n${JSON.stringify({ docs: member, title: member.name })}\n---\n<ApiDocs />`
         }))
       }

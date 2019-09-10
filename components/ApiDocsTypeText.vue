@@ -8,6 +8,7 @@ import stringifyJoiner from './stringifiers/joiner'
 import stringifyType from './stringifiers/type'
 import stringifyFunction from './stringifiers/function'
 import stringifyInterface from './stringifiers/interface'
+import Vue from 'vue'
 
 const stringifiers = {
   intersection: stringifyJoiner,
@@ -17,7 +18,13 @@ const stringifiers = {
   function: stringifyFunction,
   interface: stringifyInterface,
   literal: stringifyInterface,
-  text: (h, item, component) => component.getTextNode(item.type)
+  text: Vue.extend({
+    props: ['item', 'component'],
+
+    render () {
+      return <span>{this.component.getTextNode(this.item.type)}</span>
+    }
+  })
 }
 
 const getMatches = text => balanced.matches({
@@ -154,12 +161,14 @@ export default {
   },
 
   render (h) {
+    const component = stringifiers[this.item.kind]
+
     return (
       <span>
         <code>{ this.prefix }</code>
         <this.tag {...this.attributes}>{
-            stringifiers[this.item.kind] != null ?
-            stringifiers[this.item.kind](h, this.item, this) :
+            component != null ?
+            <component item={this.item} component={this} /> :
             `TYPE ${this.item.kind} IS INVALID`
         }</this.tag>
         <code>{ this.postfix }</code>

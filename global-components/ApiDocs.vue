@@ -35,10 +35,24 @@
       />
     </div>
 
-    <div v-if="item.functions">
-      <h2 id="methods">Methods</h2>
+    <div v-if="staticMethods">
+      <h2 id="static-functions">Static Functions</h2>
       <ApiDocsType
-        v-for="method in item.functions" 
+        v-for="method in staticMethods" 
+        :key="method.name"
+        kind="function" 
+        :type="method" 
+        :kindProps="{
+          prefix: item.name,
+          full: true
+        }"
+        :source="item.name"
+      />
+    </div>
+    <div v-if="methods">
+      <h2 id="instance-methods">Instance Methods</h2>
+      <ApiDocsType
+        v-for="method in methods" 
         :key="method.name"
         kind="function" 
         :type="method" 
@@ -110,6 +124,18 @@ export default {
     },
     slug () {
       return slugify(this.item.name)
+    },
+    staticMethods () {
+      const functions = this.item.functions && 
+        this.item.functions.filter(f => f.static)
+
+      return functions.length > 0 && functions
+    },
+    methods () {
+      const functions = this.item.functions &&
+        this.item.functions.filter(f => !f.static)
+
+      return functions.length > 0 && functions
     }
   },
   components: {

@@ -5,15 +5,19 @@ function slugify (text) {
   return slugifyText(text.toLowerCase())
 }
 
-const collectHeaders = (section, array) => [{
-  title: section,
-  slug: slugify(section),
-  level: 2
-}].concat(array.map(i => ({
-  title: i.name,
-  slug: slugify(i.name),
-  level: 3
-})))
+const collectHeaders = (section, array) => (
+  array && array.length > 0
+    ? [{
+      title: section,
+      slug: slugify(section),
+      level: 2
+    }].concat(array.map(i => ({
+      title: i.name,
+      slug: slugify(i.name),
+      level: 3
+    })))
+    : []
+)
 
 module.exports = (options = {}, context) => {
   const parseMarkdown = obj => {
@@ -55,9 +59,12 @@ module.exports = (options = {}, context) => {
         brand(types, functions, properties)
 
         page.headers = (page.headers || []).concat(
-          properties ? collectHeaders('Properties', properties) : [],
-          functions ? collectHeaders('Methods', functions) : [],
-          types ? collectHeaders('Types', types) : []
+          ...[
+            ['Properties', properties],
+            ['Static Functions', functions && functions.filter(f => f.static)],
+            ['Instance Methods', functions && functions.filter(f => !f.static)],
+            ['Types', types]
+          ].map(([section, array]) => collectHeaders(section, array))
         )
       }
     },

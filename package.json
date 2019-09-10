@@ -1,6 +1,6 @@
 {
   "name": "vuepress-plugin-api-docs-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "VuePress plugin for generating API reference pages.",
   "main": "index.js",
   "scripts": {

@@ -74,6 +74,7 @@ Objects which can become other kinds of types. This object has the keys:
     - `parens` sibling: if true, will be wrapped in parenthesis (for precedence)
   - `property`, `type`
     - `type` sibling: FreeFormType
+- `type`: FreeFormType if `kind` is not present.
 
 ### FreeFormType
 
@@ -152,9 +153,7 @@ Object with possible keys:
 
 ### DocEntryType
 
-An object which has all fields from DocEntry plus:
-
-- `type`: FreeFormType
+An object which is a DocEntry and a FreeFormTypeObject.
 
 ### DocEntryFunction
 An object which all fields from DocEntry and Function plus the following optional fields:

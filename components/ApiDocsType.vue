@@ -57,10 +57,6 @@ export default {
         </p></div>` + type.desc
       }
 
-      if (type.kind === 'type' && typeof type.type === 'object') {
-        type.kind = 'interface'
-      }
-
       if (type.kind === 'function') {
         type.returns = this.getReturns(type.returns)
         type.params = type.params || []
@@ -95,11 +91,13 @@ export default {
       }
 
       if (type.kind === 'enum' || type.kind === 'interface' || type.kind === 'literal') {
-        if (typeof type.type === 'string') {
-          type.type = {
-            type: type.type
+        Object.entries(type.type).forEach(([key, value]) => {
+          if (typeof value === 'string') {
+            type.type[key] = {
+              type: value
+            }
           }
-        }
+        })
       }
 
       return type

@@ -126,14 +126,16 @@ export default {
       return slugify(this.item.name)
     },
     staticMethods () {
-      const functions = this.item.functions && 
-        this.item.functions.filter(f => f.static)
+      if (!this.item.functions) return
+
+      const functions = this.item.functions.filter(f => f.static)
 
       return functions.length > 0 && functions
     },
     methods () {
-      const functions = this.item.functions &&
-        this.item.functions.filter(f => !f.static)
+      if (!this.item.functions) return
+
+      const functions = this.item.functions.filter(f => !f.static)
 
       return functions.length > 0 && functions
     }

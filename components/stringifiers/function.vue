@@ -8,7 +8,7 @@ export default {
     const newLines = this.item.params.length > 1
     const tag = newLines ? 'div' : 'span'
     return (
-      <span><span class='accent-fn'>{
+      <span><span class='api-docs-accent-fn'>{
         this.item.name || 'function'
       }</span>(<tag style={newLines ? {
         marginLeft: '15px'
@@ -19,7 +19,7 @@ export default {
             <span>{p.name}: <ApiDocsType nested type={p.type} kindProps={{
               tag: 'span',
               attrs: item => ({
-                class: typeof item.type === 'string' && 'accent-type'
+                class: typeof item.type === 'string' && 'api-docs-accent-type'
               })
             }} forceText /></span>
           )).reduce(join(newLines ? <span>,<br /></span> : ', '), null)

@@ -154,7 +154,7 @@ export default {
         .map(u => u.split(/&(?=[^>]*(?:<|$))/))
         .map(i => i.filter(u => u.trim().length > 0))
         .filter(i => i.length > 0)
-        .map(i => i.map(u => this.getNode(matchText(u.trim()), 'accent-type')))
+        .map(i => i.map(u => this.getNode(matchText(u.trim()), 'api-docs-accent-type')))
         .map(u => u.reduce(join(<span> &amp; </span>), null))
         .reduce(join(' | '), null)
     }
@@ -163,13 +163,15 @@ export default {
   render (h) {
     const component = stringifiers[this.item.kind]
 
+    if (!component) {
+      return `TYPE ${this.item.kind} IS INVALID`
+    }
+
     return (
       <span>
         <code>{ this.prefix }</code>
         <this.tag {...this.attributes}>{
-            component != null ?
-            <component item={this.item} component={this} /> :
-            `TYPE ${this.item.kind} IS INVALID`
+            <component item={this.item} component={this} />
         }</this.tag>
         <code>{ this.postfix }</code>
       </span>
@@ -193,15 +195,22 @@ pre
   code
     color inherit
 
-.accent-type
-  color #0abde3
-
-a .accent-type
-  color inherit
-
-.accent-fn
-  color #10ac84
-
 .muted
   color #ccc
+
+
+</style>
+
+<style lang="stylus">
+
+$apiDocsAccentFunction ?= #10ac84
+$apiDocsAccentType ?= #0abde3
+.api-docs-accent-fn
+  color $apiDocsAccentFunction
+
+.api-docs-accent-type
+  color $apiDocsAccentType
+
+a .api-docs-accent-type
+  color inherit
 </style>

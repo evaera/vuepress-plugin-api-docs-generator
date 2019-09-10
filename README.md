@@ -200,3 +200,12 @@ In terms of the parent and child data structures, `defaults` is merged together 
 - `methodCallOperator`: String, default `.`
 - `staticMethodCallOperator`: string, default `.`
 - `api`: Optional array of doc pages (objects with the structure of the data structure detailed in the previous section). These pages will be automatically created in your website at `/api/<item name slug>.html`.
+
+### Color pallette
+
+Available Stylus pallette options (and defaults):
+
+```styl
+$apiDocsAccentFunction = #10ac84
+$apiDocsAccentType = #0abde3
+```

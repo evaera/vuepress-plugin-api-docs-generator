@@ -21,6 +21,8 @@ const collectHeaders = (section, array) => (
 
 module.exports = (options = {}, context) => {
   const parseMarkdown = obj => {
+    if (!obj) return
+
     for (const [key, value] of Object.entries(obj)) {
       if (typeof value === 'string' && key === 'desc') {
         obj.desc_md = value

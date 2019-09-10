@@ -12,6 +12,7 @@ const KINDS = {
   text: ApiDocsTypeText,
   type: ApiKindType,
   interface: ApiKindType,
+  enum: ApiKindType,
   literal: ApiKindType,
   union: ApiKindType,
   intersection: ApiKindType
@@ -91,6 +92,14 @@ export default {
           overload.name = type.name
           overload.returns = this.getReturns(overload.returns)
         })
+      }
+
+      if (type.kind === 'enum' || type.kind === 'interface' || type.kind === 'literal') {
+        if (typeof type.type === 'string') {
+          type.type = {
+            type: type.type
+          }
+        }
       }
 
       return type

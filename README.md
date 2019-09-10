@@ -65,7 +65,7 @@ Objects which can become other kinds of types. This object has the keys:
 - `kind`: String, with the possible values:
   - `function`
     - self becomes Function
-  - `interface`
+  - `interface`, `enum`
     - self becomes Interface
   - `literal`
     - self becomes LiteralInterface
@@ -81,7 +81,9 @@ Either a FreeFormTypeString or a FreeFormTypeObject.
 
 ### Interface
 
-An Interface is an object which contains a dictionary mapping string keys to FreeFormTypes. It has the keys:
+An Interface is an object which contains a dictionary mapping string keys to FreeFormTypes. You may also set the value to `null` in the case of an enum.
+
+It has the keys:
 
 `type`: Dictionary
 

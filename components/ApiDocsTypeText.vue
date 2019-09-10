@@ -17,6 +17,7 @@ const stringifiers = {
   type: stringifyType,
   function: stringifyFunction,
   interface: stringifyInterface,
+  enum: stringifyInterface,
   literal: stringifyInterface,
   text: Vue.extend({
     props: ['item', 'component'],

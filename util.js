@@ -6,7 +6,7 @@ export function slugify (text) {
   return slugifyText(text.toLowerCase())
 }
 
-export const isInterface = value => typeof value === 'object' && (value.kind === 'interface' || value.kind === 'literal')
+export const isInterface = value => typeof value === 'object' && (value.kind === 'interface' || value.kind === 'literal' || value.kind === 'enum')
 
 export const joinElements = delim => (accu, elem) => accu === null ? [elem] : [...accu, delim, elem]
 

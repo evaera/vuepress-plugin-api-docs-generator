@@ -61,7 +61,6 @@ export default {
       }
 
       if (type.kind === 'function') {
-        type.returns = this.getReturns(type.returns)
         type.params = type.params || []
         type.tags = type.tags || []
 
@@ -89,6 +88,7 @@ export default {
         type.overloads.forEach(overload => {
           overload.kind = 'function'
           overload.name = type.name
+          overload.returns = this.getReturns(overload.returns)
         })
       }
 

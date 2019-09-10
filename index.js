@@ -58,14 +58,14 @@ module.exports = (options = {}, context) => {
 
         brand(types, functions, properties)
 
-        page.headers = (page.headers || []).concat(
+        page.headers = [].concat(
           ...[
             ['Properties', properties],
             ['Static Functions', functions && functions.filter(f => f.static)],
             ['Instance Methods', functions && functions.filter(f => !f.static)],
             ['Types', types]
           ].map(([section, array]) => collectHeaders(section, array))
-        )
+        ).concat(page.headers)
       }
     },
 

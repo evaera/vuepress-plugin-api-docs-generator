@@ -15,7 +15,7 @@ export default {
         marginLeft: '30px'
       }}>{
           Object.entries(this.item.type).map(([key, value]) => (
-            <div>{key}{ value.type && <span>{this.item.kind === 'enum' ? '(' : ': '}{ value.type &&
+            <div>{key}{ value && value.type && <span>{this.item.kind === 'enum' ? '(' : ': '}{ value && value.type &&
               <ApiDocsType
                 type={this.item.kind === 'literal' ? {
                   kind: 'literal',
@@ -26,7 +26,7 @@ export default {
                   tag: isInterface(value) ? 'pre' : 'span'
                 }}
                 nested
-              />}{value.type && this.item.kind === 'enum' && ')'}</span>}{value && value.desc &&
+              />}{value && value.type && this.item.kind === 'enum' && ')'}</span>}{value && value.desc &&
                 <ApiDocsDesc
                   class='inset'
                   style={{

@@ -68,6 +68,7 @@ export default {
   props: {
     item: Object,
     prefix: String,
+    kindPrefix: String,
     postfix: String,
     tag: {
       default: 'code'
@@ -171,6 +172,7 @@ export default {
 
     return (
       <span>
+        {this.kindPrefix && <code class="api-docs-kind">{this.kindPrefix} </code>}
         <code>{ this.prefix }</code>
         <this.tag {...this.attributes}>{
             <component item={this.item} component={this} />
@@ -194,8 +196,7 @@ pre
   margin 0
   padding 0
 
-  code
-    color inherit
+
 
 .muted
   color #ccc
@@ -207,8 +208,11 @@ pre
 
 $apiDocsAccentFunction ?= #10ac84
 $apiDocsAccentType ?= #0abde3
-.api-docs-accent-fn
+code.api-docs-accent-fn, .api-docs-accent-fn
   color $apiDocsAccentFunction
+
+code.api-docs-kind
+  color $accentColor
 
 .api-docs-accent-type
   color $apiDocsAccentType

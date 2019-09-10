@@ -10,7 +10,10 @@
     <ApiDocsType 
       :type="item" 
       :forceText="true" 
-      :prefix="this.item.name ? this.item.name + ': ' : ''"
+      :prefix="this.item.name ? this.item.name + (this.readableKind === 'type' ? ':' : '') + ' ' : ''"
+      :kindProps="{
+        kindPrefix: this.readableKind
+      }"
       nested
     />
     <ApiDocsDesc :text="item.desc" />
@@ -24,7 +27,16 @@ export default {
 	mixins: [apiMixin],
 	data: () => ({
 		kind: 'type'
-	}),
+  }),
+  computed: {
+    readableKind () {
+      if (this.item.kind === 'literal') {
+        return 'interface'
+      }
+
+      return this.item.kind
+    }
+  },
   props: ['item', 'prefix', 'source'],
   components: {
     ApiDocsDesc: () => import('../ApiDocsDesc'),

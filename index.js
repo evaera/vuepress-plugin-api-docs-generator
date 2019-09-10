@@ -62,10 +62,10 @@ module.exports = (options = {}, context) => {
 
         page.headers = [].concat(
           ...[
+            ['Types', types],
             ['Properties', properties],
             ['Static Functions', functions && functions.filter(f => f.static)],
-            ['Instance Methods', functions && functions.filter(f => !f.static)],
-            ['Types', types]
+            ['Instance Methods', functions && functions.filter(f => !f.static)]
           ].map(([section, array]) => collectHeaders(section, array))
         ).concat(page.headers)
       }

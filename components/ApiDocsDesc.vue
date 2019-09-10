@@ -8,7 +8,7 @@ import { getUrl } from '../util'
 export default {
   computed: {
     parsedText () {
-      return (this.text || '').replace(/\[\[(.+)\]\]/g, (_, match) => {
+      return (this.text || '').replace(/\[\[(.+?)\]\]/g, (_, match) => {
         const url = getUrl.call(this, match)
 
         if (url) {

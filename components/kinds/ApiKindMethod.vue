@@ -36,7 +36,9 @@
           </tr>
           <tr v-for="param in overload.params" :key="param.name">
             <td><code>{{ param.name }}</code></td>
-            <td><ApiDocsType :type="param.type" /></td>
+            <td><ApiDocsType :type="param.type" :kindProps="{
+              disableKindPrefix: true
+            }" /></td>
             <td>{{ (param.optional || (typeof param.type === 'string' && param.type.endsWith('?'))) ? '✘' : '✔'}}</td>
             <td><ApiDocsDesc :text="param.desc" /></td>
           </tr>

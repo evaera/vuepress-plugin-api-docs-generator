@@ -9,7 +9,7 @@ export default {
   computed: {
     parsedText () {
       return (this.text || '').replace(/\[\[(.+?)\]\]/g, (_, match) => {
-        const url = getUrl.call(this, match)
+        const url = getUrl.call(this, match, true)
 
         if (url) {
           return `<a href="${url}">${match}</a>`

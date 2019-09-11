@@ -10,13 +10,13 @@ export const isInterface = value => typeof value === 'object' && (value.kind ===
 
 export const joinElements = delim => (accu, elem) => accu === null ? [elem] : [...accu, delim, elem]
 
-export function getUrl (path) {
+export function getUrl (path, addBase) {
   const [type, member] = path.split('.')
   if (API_DOCS.types && API_DOCS.types[type]) {
     return API_DOCS.types[type]
   }
 
-  let base = '' // this.$site.base || ''
+  let base = addBase ? this.$site.base : ''
 
   if (base.endsWith('/')) {
     base = base.slice(0, -1)

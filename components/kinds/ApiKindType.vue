@@ -12,7 +12,7 @@
       :forceText="true" 
       :prefix="this.item.name ? this.item.name + (this.readableKind === 'type' ? ':' : '') + ' ' : ''"
       :kindProps="{
-        kindPrefix: this.readableKind
+        kindPrefix: !this.disableKindPrefix ? this.readableKind : ''
       }"
       nested
     />
@@ -37,7 +37,7 @@ export default {
       return this.item.kind
     }
   },
-  props: ['item', 'prefix', 'source'],
+  props: ['item', 'prefix', 'source', 'disableKindPrefix'],
   components: {
     ApiDocsDesc: () => import('../ApiDocsDesc'),
     ApiDocsSince: () => import('../ApiDocsSince'),

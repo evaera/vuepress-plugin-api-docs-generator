@@ -50,7 +50,7 @@
           <th></th>
         </tr>
         <tr v-for="(returnValue, index) in overload.returns" :key="index">
-          <td><ApiDocsType :type="returnValue.type" :kindProps="{ retainTypeModifiers: true }" /></td>
+          <td><ApiDocsType :type="returnValue.type" :kindProps="{ retainTypeModifiers: true, disableKindPrefix: true }" /></td>
           <td><ApiDocsDesc :text="returnValue.desc" /></td>
         </tr>
       </table>

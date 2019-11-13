@@ -152,6 +152,15 @@ export default {
     ApiKindProperty,
     ApiKindType,
     ApiDocsTags
+  },
+  mounted() {
+    if (window.location.hash != null) {
+      const el = document.querySelector(window.location.hash);
+
+      if (el) {
+        window.scroll(0, el.offsetTop - 50);
+      }
+    }
   }
 };
 </script>

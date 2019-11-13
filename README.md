@@ -150,10 +150,7 @@ Object with possible keys:
   - `since`: String, Version this member became deprecated
   - `use`: Reference to what to use instead (`DocumentName.Field`)
 - `since`: String, version that this member was added
-
-### DocEntryType
-
-An object which is a DocEntry and a FreeFormTypeObject.
+- `type`: FreeFormType
 
 ### DocEntryFunction
 An object which all fields from DocEntry and Function plus the following optional fields:
@@ -177,8 +174,8 @@ All keys are optional unless otherwise noted:
   - `type_tags`: Array of TagDefault objects
   - `function_tags`: Array of TagDefault objects
 - `tags`: Array of strings which are tag names that apply to this Document
-- `types`: Array of DocEntryType objects
-- `properties`: Array of DocEntryType objects
+- `types`: Array of DocEntry objects
+- `properties`: Array of DocEntry objects
 - `functions`: Array of DocEntryFunction objects
   
 

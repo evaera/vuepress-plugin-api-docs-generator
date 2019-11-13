@@ -1,6 +1,12 @@
 <template>
   <span>
-    <span class="badge" v-for="tag in allTags" :key="tag" :style="getColor(tag)">{{ tag }}</span>
+    <span
+      class="badge"
+      v-for="tag in allTags"
+      :key="tag"
+      :style="getColor(tag)"
+      >{{ tag }}</span
+    >
   </span>
 </template>
 
@@ -20,7 +26,7 @@
 </style>
 
 <script>
-import apiMixin from '../apiMixin'
+import apiMixin from "../apiMixin";
 
 export default {
   mixins: [apiMixin],
@@ -31,37 +37,37 @@ export default {
   },
 
   computed: {
-    allTags () {
-      const defaultTags = this.getDefaults('tags', [])
+    allTags() {
+      const defaultTags = this.getDefaults("tags", [])
         .map(tag => {
-          if (typeof tag !== 'object') {
-            return tag
+          if (typeof tag !== "object") {
+            return tag;
           }
 
           if (tag.unless) {
-            if (typeof tag.unless === 'string') {
-              tag.unless = [ tag.unless ]
+            if (typeof tag.unless === "string") {
+              tag.unless = [tag.unless];
             }
 
             for (const unlessTag of tag.unless) {
               if (this.tags.includes(unlessTag)) {
-                return
+                return;
               }
             }
           }
 
-          return tag.name
+          return tag.name;
         })
-        .filter(t => t)
+        .filter(t => t);
 
-      return Array.from(new Set(defaultTags.concat(this.tags)))
+      return Array.from(new Set(defaultTags.concat(this.tags)));
     }
   },
 
   methods: {
-    getColor (tag) {
-      return API_DOCS.tagColors && { backgroundColor: API_DOCS.tagColors[tag] }
+    getColor(tag) {
+      return API_DOCS.tagColors && { backgroundColor: API_DOCS.tagColors[tag] };
     }
   }
-}
+};
 </script>

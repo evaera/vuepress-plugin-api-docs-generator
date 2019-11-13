@@ -1,17 +1,11 @@
 <script>
-import ApiDocsType from '../ApiDocsType.vue'
+import ApiDocsType from "../ApiDocsType.vue";
 
 export default {
-  props: ['item'],
+  props: ["item"],
 
-  render () {
-    return (
-      <ApiDocsType
-        type={this.item.type}
-        forceText
-        nested
-      />
-    )
+  render() {
+    return <ApiDocsType type={this.item.type} forceText nested />;
   }
-}
+};
 </script>

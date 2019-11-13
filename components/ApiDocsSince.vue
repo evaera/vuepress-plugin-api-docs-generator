@@ -4,8 +4,8 @@
 
 <script>
 export default {
-  props: ['since']
-}
+  props: ["since"]
+};
 </script>
 
 <style lang="stylus" scoped>

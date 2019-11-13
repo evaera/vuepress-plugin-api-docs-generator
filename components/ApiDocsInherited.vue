@@ -1,11 +1,11 @@
 <template>
-  <span class="inherited">↪ Inherited from <ApiLink :to="from" /></span>
+  <span class="inherited">↪ Inherited from <ApiLink :to="from"/></span>
 </template>
 
 <script>
 export default {
-  props: ['from']
-}
+  props: ["from"]
+};
 </script>
 
 <style lang="stylus" scoped>

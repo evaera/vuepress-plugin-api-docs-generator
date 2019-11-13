@@ -3,24 +3,24 @@
 </template>
 
 <script>
-import { getUrl } from '../util'
+import { getUrl } from "../util";
 
 export default {
   computed: {
-    parsedText () {
-      return (this.text || '').replace(/\[\[(.+?)\]\]/g, (_, match) => {
-        const url = getUrl.call(this, match, true)
+    parsedText() {
+      return (this.text || "").replace(/\[\[(.+?)\]\]/g, (_, match) => {
+        const url = getUrl.call(this, match, true);
 
         if (url) {
-          return `<a href="${url}">${match}</a>`
+          return `<a href="${url}">${match}</a>`;
         } else {
-          return match
+          return match;
         }
-      })
+      });
     }
   },
-  props: ['text']
-}
+  props: ["text"]
+};
 </script>
 
 <style lang="stylus" scoped>

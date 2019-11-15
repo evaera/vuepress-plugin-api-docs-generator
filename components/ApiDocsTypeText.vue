@@ -123,11 +123,11 @@ export default {
       if (typeof t === "string") {
         if (t.length === 0) return;
 
-        const strip =
-          this.retainTypeModifiers !== undefined
-            ? !this.retainTypeModifiers
-            : !this.nested;
-        t = strip && t.endsWith("?") ? t.slice(0, -1) : t;
+        // const strip =
+        //   this.retainTypeModifiers !== undefined
+        //     ? !this.retainTypeModifiers
+        //     : !this.nested;
+        // t = strip && t.endsWith("?") ? t.slice(0, -1) : t;
 
         const info = this.getTypeInfo(t);
 

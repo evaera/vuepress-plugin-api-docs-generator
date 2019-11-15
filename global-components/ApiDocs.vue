@@ -154,7 +154,7 @@ export default {
     ApiDocsTags
   },
   mounted() {
-    if (window.location.hash != null) {
+    if (window.location.hash != null && window.location.hash.length > 0) {
       const el = document.querySelector(window.location.hash);
 
       if (el) {

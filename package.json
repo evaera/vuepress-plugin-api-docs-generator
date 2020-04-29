@@ -9,7 +9,7 @@
   "author": "evaera",
   "license": "MIT",
   "dependencies": {
-    "@vuepress/plugin-register-components": "^1.0.0-rc.1",
+    "@vuepress/plugin-register-components": "^1.4.1",
     "node-balanced": "0.0.14",
     "slugify": "^1.3.4"
   },

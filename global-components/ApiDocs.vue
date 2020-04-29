@@ -25,7 +25,7 @@
         kind="property"
         :type="prop"
         :kindProps="{
-          prefix: item.name
+          prefix: item.name,
         }"
         :source="item.name"
       />
@@ -40,7 +40,7 @@
         :type="method"
         :kindProps="{
           prefix: item.name,
-          full: true
+          full: true,
         }"
         :source="item.name"
       />
@@ -54,7 +54,7 @@
         :type="method"
         :kindProps="{
           prefix: item.name,
-          full: true
+          full: true,
         }"
         :source="item.name"
       />
@@ -75,7 +75,7 @@ import { slugify } from "../util";
 
 const mergeArray = (ar1, ar2) =>
   [].concat(
-    (ar1 || []).filter(i => !ar2.find(v => v.name === i.name)),
+    (ar1 || []).filter((i) => !ar2.find((v) => v.name === i.name)),
     ar2 || []
   );
 const mergeObj = (o1, o2) => ({ ...o1, ...o2 });
@@ -83,7 +83,7 @@ const mergers = {
   defaults: mergeObj,
   types: mergeArray,
   properties: mergeArray,
-  functions: mergeArray
+  functions: mergeArray,
 };
 const merge = (o1 = {}, o2) => {
   const out = { ...o2 };
@@ -103,16 +103,16 @@ export default {
     return {
       apiDocsDefaults: {
         ...(API_DOCS.defaults || {}),
-        ...(this.item.defaults || {})
+        ...(this.item.defaults || {}),
       },
-      apiDocsKind: "root"
+      apiDocsKind: "root",
     };
   },
   methods: {
     getDoc(docs) {
       if (docs.extends) {
         const parentPage = this.$site.pages.find(
-          p => p.frontmatter.docs && p.frontmatter.docs.name === docs.extends
+          (p) => p.frontmatter.docs && p.frontmatter.docs.name === docs.extends
         );
 
         if (parentPage) {
@@ -121,7 +121,7 @@ export default {
       }
 
       return docs;
-    }
+    },
   },
   computed: {
     item() {
@@ -133,17 +133,17 @@ export default {
     staticMethods() {
       if (!this.item.functions) return;
 
-      const functions = this.item.functions.filter(f => f.static);
+      const functions = this.item.functions.filter((f) => f.static);
 
       return functions.length > 0 && functions;
     },
     methods() {
       if (!this.item.functions) return;
 
-      const functions = this.item.functions.filter(f => !f.static);
+      const functions = this.item.functions.filter((f) => !f.static);
 
       return functions.length > 0 && functions;
-    }
+    },
   },
   components: {
     ApiDocsType,
@@ -151,17 +151,19 @@ export default {
     ApiDocsDesc,
     ApiKindProperty,
     ApiKindType,
-    ApiDocsTags
+    ApiDocsTags,
   },
   mounted() {
-    if (window.location.hash != null && window.location.hash.length > 0) {
-      const el = document.querySelector(window.location.hash);
+    this.$nextTick(() => {
+      if (window.location.hash != null && window.location.hash.length > 0) {
+        const el = document.querySelector(window.location.hash);
 
-      if (el) {
-        window.scroll(0, el.offsetTop - 50);
+        if (el) {
+          window.scroll(0, el.offsetTop - 50);
+        }
       }
-    }
-  }
+    });
+  },
 };
 </script>
 

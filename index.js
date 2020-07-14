@@ -36,7 +36,7 @@ module.exports = (options = {}, context) => {
   }
 
   return {
-    name: 'api-docs',
+    name: 'api-docs-generator',
 
     chainWebpack: (config) => {
       config.resolveLoader
@@ -67,7 +67,7 @@ module.exports = (options = {}, context) => {
             ['Static Functions', functions && functions.filter(f => f.static)],
             ['Instance Methods', functions && functions.filter(f => !f.static)]
           ].map(([section, array]) => collectHeaders(section, array))
-        ).concat(page.headers)
+        ).concat(page.headers).filter(header => !!header)
       }
     },
 
